@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import EffectPage from './components/EffectPage'
 import GlitchText from './components/GlitchText'
@@ -86,30 +85,15 @@ const quotes = [
 const T = ({ children }) => <GlitchText text={children} />
 
 export default function App() {
-  const [page, setPage] = useState(() => (location.hash === '#effect' ? 'effect' : 'bio'))
-  const go = (next) => {
-    setPage(next)
-    history.replaceState(null, '', next === 'effect' ? '#effect' : location.pathname)
-    window.scrollTo(0, 0)
-  }
-  const tab = (id) => (page === id ? 'tab on' : 'tab')
-
   return (
     <>
       <nav>
-        <button className={tab('bio')} onClick={() => go('bio')}>Биография</button>
-        <button className={tab('effect')} onClick={() => go('effect')}>Эффект Манделы</button>
-        {page === 'bio' && (
-          <>
-            <a href="#life"><T>Жизнь</T></a>
-            <a href="#quotes"><T>Фразы</T></a>
-            <a href="#quiz"><T>Тест</T></a>
-          </>
-        )}
+        <a href="#life"><T>Жизнь</T></a>
+        <a href="#quotes"><T>Фразы</T></a>
+        <a href="#effect"><T>Эффект Манделы</T></a>
+        <a href="#quiz"><T>Тест</T></a>
       </nav>
 
-      {page === 'effect' ? <EffectPage /> : (
-      <>
 
       <header id="top" className="hero">
         <div className="hero-text">
@@ -137,19 +121,6 @@ export default function App() {
         ))}
       </section>
 
-      <section id="effect" className="block">
-        <h2><T>Эффект Манделы</T></h2>
-        <Reveal className="prose">
-          <p>
-            Из-за Нельсона Манделы появился целый термин. В 2009 году писательница Фиона Брум узнала, что множество людей,
-            как и она, «помнят» его смерть в тюрьме в 1980-х, хотя он вышел на свободу в 1990-м и умер только в 2013-м.
-            Так возник «эффект Манделы»: коллективное ложное воспоминание. Многие, например, уверены, что у Пикачу
-            чёрный кончик хвоста, хотя это не так.
-          </p>
-          <button className="opt more" onClick={() => go('effect')}>Читать подробнее</button>
-        </Reveal>
-      </section>
-
       <section id="quotes" className="block">
         <h2><T>Знаменитые фразы</T></h2>
         <Reveal className="quotes">
@@ -162,13 +133,12 @@ export default function App() {
         </Reveal>
       </section>
 
+      <EffectPage />
+
       <section id="quiz" className="block">
         <h2><T>Проверь себя</T></h2>
         <Quiz />
       </section>
-
-      </>
-      )}
 
       <footer>
         <p><T>Презентация о Нельсоне Манделе. Фразы приведены в вольном переводе.</T></p>
