@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import './App.css'
+import EffectPage from './components/EffectPage'
 import GlitchText from './components/GlitchText'
 import Photo from './components/Photo'
 import Quiz from './components/Quiz'
@@ -84,14 +86,30 @@ const quotes = [
 const T = ({ children }) => <GlitchText text={children} />
 
 export default function App() {
+  const [page, setPage] = useState(() => (location.hash === '#effect' ? 'effect' : 'bio'))
+  const go = (next) => {
+    setPage(next)
+    history.replaceState(null, '', next === 'effect' ? '#effect' : location.pathname)
+    window.scrollTo(0, 0)
+  }
+  const tab = (id) => (page === id ? 'tab on' : 'tab')
+
   return (
     <>
       <nav>
-        <a href="#top"><T>Главная</T></a>
-        <a href="#life"><T>Жизнь</T></a>
-        <a href="#quotes"><T>Фразы</T></a>
-        <a href="#quiz"><T>Тест</T></a>
+        <button className={tab('bio')} onClick={() => go('bio')}>Биография</button>
+        <button className={tab('effect')} onClick={() => go('effect')}>Эффект Манделы</button>
+        {page === 'bio' && (
+          <>
+            <a href="#life"><T>Жизнь</T></a>
+            <a href="#quotes"><T>Фразы</T></a>
+            <a href="#quiz"><T>Тест</T></a>
+          </>
+        )}
       </nav>
+
+      {page === 'effect' ? <EffectPage /> : (
+      <>
 
       <header id="top" className="hero">
         <div className="hero-text">
@@ -135,6 +153,9 @@ export default function App() {
         <h2><T>Проверь себя</T></h2>
         <Quiz />
       </section>
+
+      </>
+      )}
 
       <footer>
         <p><T>Презентация о Нельсоне Манделе. Фразы приведены в вольном переводе.</T></p>

@@ -88,3 +88,19 @@ footer a { color: var(--accent); }
 .note { margin-top: 1rem; color: var(--muted); font-size: 1.05rem; }
 .result { text-align: center; }
 .score { font-family: var(--display); font-size: 2.2rem; color: var(--accent); margin-bottom: 1rem; }
+
+.tab { font: inherit; background: none; border: 0; border-bottom: 2px solid transparent; color: var(--muted); cursor: pointer; padding: 0 0 .2rem; }
+.tab:hover { color: var(--accent); }
+.tab.on { color: var(--fg); border-bottom-color: var(--accent); }
+.prose { max-width: 50rem; margin: 0 auto; font-size: 1.3rem; line-height: 1.75; color: #d8cdb6; }
+.prose + .tl, .tl + .prose { margin-top: 2rem; }
+.tl { max-width: 50rem; margin: 0 auto 2rem; padding-left: 1.5rem; border-left: 3px solid var(--accent); }
+.tl p { font-size: 1.2rem; color: #d8cdb6; margin-top: .3rem; }
+.exgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 66rem; margin: 0 auto; }
+.ex { border: 1px solid var(--line); border-radius: 18px; padding: 1.8rem; background: #15120d; display: flex; flex-direction: column; gap: .5rem; }
+.ex h3 { font-family: var(--display); font-weight: 500; font-size: 1.25rem; margin-bottom: .5rem; }
+.ex p { font-size: 1.1rem; color: #d8cdb6; }
+.exlabel { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.exlabel.real { color: var(--accent); margin-top: .6rem; }
+.ex .opt { margin-top: .8rem; }
+@media (max-width: 760px) { nav { flex-wrap: wrap; } }
