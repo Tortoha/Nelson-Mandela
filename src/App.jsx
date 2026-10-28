@@ -119,6 +119,9 @@ export default function App() {
           <div className="flag-bar">
             {['#c8382c', '#e0a526', '#2e8b57', '#2a5db0', '#f3ead8'].map((c) => <i key={c} style={{ background: c }} />)}
           </div>
+          <p className="authors">
+            <T>Презентацию сделали великий, прекрасный, красивый, великодушный господин Сулейменов Искандер и менее прекрасный, но не менее ужасный Сулейменов Тастемир</T>
+          </p>
         </div>
         <Photo items={heroPhotos} ratio="4 / 5" delay={3500} />
       </header>

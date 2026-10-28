@@ -104,3 +104,5 @@ footer a { color: var(--accent); }
 .exlabel.real { color: var(--accent); margin-top: .6rem; }
 .ex .opt { margin-top: .8rem; }
 @media (max-width: 760px) { nav { flex-wrap: wrap; } }
+
+.hero .authors { font-size: 1.05rem; font-style: italic; margin-top: 2rem; max-width: 34rem; }
