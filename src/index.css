@@ -1,0 +1,12 @@
+:root {
+  --bg: #0f0d0a;
+  --fg: #f3ead8;
+  --muted: #b7a98c;
+  --accent: #e0a526;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: var(--fg);
+  background: var(--bg);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-snap-type: y proximity; }
+body { background: var(--bg); line-height: 1.6; }

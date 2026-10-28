@@ -1,0 +1,23 @@
+.slide {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem max(1.5rem, 8vw);
+  scroll-snap-align: start;
+  border-bottom: 1px solid #2a251c;
+}
+.hero { text-align: center; align-items: center; background: radial-gradient(circle at 50% 30%, #2b2210, var(--bg) 70%); }
+.hero h1 { font-size: clamp(3rem, 10vw, 7rem); letter-spacing: .02em; }
+.hero p { color: var(--muted); font-size: 1.3rem; margin-top: 1rem; }
+.hero .years { color: var(--accent); font-size: 1.6rem; margin-top: 2rem; }
+h2 { font-size: clamp(2rem, 5vw, 3.2rem); color: var(--accent); margin-bottom: 2rem; }
+ul { list-style: none; max-width: 48rem; }
+li { padding: 1rem 0 1rem 1.5rem; border-left: 3px solid var(--accent); margin-bottom: 1rem; font-size: 1.2rem; }
+li b { color: var(--accent); margin-right: .5rem; }
+.quote blockquote { font-size: clamp(1.5rem, 4vw, 2.6rem); font-style: italic; max-width: 50rem; }
+.quote cite { display: block; margin-top: 1.5rem; color: var(--muted); font-size: 1.1rem; }
+nav { position: fixed; top: 0; right: 0; padding: 1rem 1.5rem; display: flex; gap: 1rem; z-index: 10; font-size: .9rem; }
+nav a { color: var(--muted); text-decoration: none; }
+nav a:hover { color: var(--accent); }
+footer { text-align: center; color: var(--muted); padding: 2rem; font-size: .9rem; }
