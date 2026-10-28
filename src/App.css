@@ -1,23 +1,60 @@
-.slide {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 4rem max(1.5rem, 8vw);
-  scroll-snap-align: start;
-  border-bottom: 1px solid #2a251c;
+.word { display: inline-block; white-space: nowrap; }
+.ch { position: relative; display: inline-block; white-space: pre; transition: color .35s ease; }
+.ch::after {
+  content: attr(data-alt);
+  position: absolute; left: 0; top: 0;
+  color: var(--accent); opacity: 0; transition: opacity .35s ease;
 }
-.hero { text-align: center; align-items: center; background: radial-gradient(circle at 50% 30%, #2b2210, var(--bg) 70%); }
-.hero h1 { font-size: clamp(3rem, 10vw, 7rem); letter-spacing: .02em; }
-.hero p { color: var(--muted); font-size: 1.3rem; margin-top: 1rem; }
-.hero .years { color: var(--accent); font-size: 1.6rem; margin-top: 2rem; }
-h2 { font-size: clamp(2rem, 5vw, 3.2rem); color: var(--accent); margin-bottom: 2rem; }
-ul { list-style: none; max-width: 48rem; }
-li { padding: 1rem 0 1rem 1.5rem; border-left: 3px solid var(--accent); margin-bottom: 1rem; font-size: 1.2rem; }
-li b { color: var(--accent); margin-right: .5rem; }
-.quote blockquote { font-size: clamp(1.5rem, 4vw, 2.6rem); font-style: italic; max-width: 50rem; }
-.quote cite { display: block; margin-top: 1.5rem; color: var(--muted); font-size: 1.1rem; }
-nav { position: fixed; top: 0; right: 0; padding: 1rem 1.5rem; display: flex; gap: 1rem; z-index: 10; font-size: .9rem; }
-nav a { color: var(--muted); text-decoration: none; }
+.ch.on { color: transparent; }
+.ch.on::after { opacity: 1; }
+
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+nav {
+  position: fixed; inset: 0 0 auto 0; z-index: 10;
+  display: flex; gap: 1.5rem; justify-content: flex-end;
+  padding: 1rem max(1.5rem, 6vw);
+  background: linear-gradient(var(--bg), transparent);
+  font-size: .85rem; font-weight: 500;
+}
+nav a { color: var(--muted); text-decoration: none; transition: color .2s; }
 nav a:hover { color: var(--accent); }
-footer { text-align: center; color: var(--muted); padding: 2rem; font-size: .9rem; }
+
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 6rem 1.5rem 4rem;
+  background: radial-gradient(circle at 50% 35%, #2b2210, var(--bg) 70%);
+}
+.hero h1 { font-family: var(--display); font-weight: 700; font-size: clamp(2.2rem, 9vw, 6.5rem); line-height: 1.05; }
+.hero p { color: var(--muted); font-size: 1.2rem; margin-top: 1.5rem; }
+.hero .years { font-family: var(--display); color: var(--accent); font-size: 1.3rem; margin-top: 2rem; }
+.flag-bar { display: flex; height: 6px; width: min(260px, 60vw); margin-top: 2.5rem; border-radius: 3px; overflow: hidden; }
+.flag-bar i { flex: 1; }
+
+section.block { padding: 5rem max(1.5rem, 8vw); border-top: 1px solid var(--line); }
+h2 { font-family: var(--display); font-weight: 700; font-size: clamp(1.6rem, 4.5vw, 3rem); color: var(--accent); margin-bottom: 3rem; }
+
+.step { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: 66rem; margin: 0 auto 5rem; }
+.step:nth-child(even) .illus { order: 2; }
+.illus { width: 100%; height: auto; border-radius: 18px; border: 1px solid var(--line); }
+.year { font-family: var(--display); color: var(--accent); font-size: .95rem; }
+.step h3 { font-family: var(--display); font-weight: 500; font-size: clamp(1.2rem, 2.6vw, 1.7rem); margin: .5rem 0 1rem; }
+.step p { color: #d8cdb6; font-size: 1.05rem; }
+
+.quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; max-width: 66rem; margin: 0 auto; }
+.quote { border: 1px solid var(--line); border-radius: 18px; padding: 2rem; background: #15120d; }
+.quote q { display: block; font-family: var(--display); font-weight: 500; font-size: 1.15rem; line-height: 1.5; quotes: '«' '»'; }
+.quote cite { display: block; margin-top: 1.2rem; color: var(--muted); font-style: normal; font-size: .9rem; }
+
+footer { text-align: center; color: var(--muted); padding: 3rem 1.5rem; font-size: .85rem; border-top: 1px solid var(--line); }
+
+@media (max-width: 760px) {
+  .step { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 3.5rem; }
+  .step:nth-child(even) .illus { order: 0; }
+  nav { gap: .9rem; font-size: .75rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transition: none; opacity: 1; transform: none; }
+  html { scroll-behavior: auto; }
+}
