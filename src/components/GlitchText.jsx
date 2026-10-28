@@ -1,48 +1,61 @@
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 
-const POOL = 'абвгдежзиклмнопрстуфхцчшэюя'
+const RU = 'абвгдежзиклмнопрстуфхцчшэюя'
+const EN = 'abcdefghijklmnoprstuvwxyz'
 
-// Периодически одна буква либо пропадает, либо на миг превращается в другую.
-export default function GlitchText({ text, interval = 1100 }) {
-  const [swap, setSwap] = useState(null)
+// Периодически буква пропадает или на миг превращается в другую. Работает с любым текстом.
+export default function GlitchText({ text, interval = 1500 }) {
+  const [swaps, setSwaps] = useState({})
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const letters = [...text].flatMap((c, i) => (/\p{L}/u.test(c) ? [i] : []))
-    let hide
-    const tick = setInterval(() => {
-      const i = letters[Math.floor(Math.random() * letters.length)]
-      let alt = ''
-      if (Math.random() > 0.4) {
-        alt = POOL[Math.floor(Math.random() * POOL.length)]
-        if (text[i] === text[i].toUpperCase()) alt = alt.toUpperCase()
+    if (!letters.length) return
+    let next, hide
+    const run = () => {
+      const picked = {}
+      const count = text.length > 60 ? 2 : 1
+      for (let k = 0; k < count; k++) {
+        const i = letters[Math.floor(Math.random() * letters.length)]
+        let alt = ''
+        if (Math.random() > 0.4) {
+          const pool = /[a-z]/i.test(text[i]) ? EN : RU
+          alt = pool[Math.floor(Math.random() * pool.length)]
+          if (text[i] === text[i].toUpperCase()) alt = alt.toUpperCase()
+        }
+        picked[i] = alt
       }
-      setSwap({ i, alt })
-      hide = setTimeout(() => setSwap(null), 750)
-    }, interval)
+      setSwaps(picked)
+      hide = setTimeout(() => setSwaps({}), 800)
+      next = setTimeout(run, interval * (0.7 + Math.random()))
+    }
+    next = setTimeout(run, 400 + Math.random() * interval * 2)
     return () => {
-      clearInterval(tick)
+      clearTimeout(next)
       clearTimeout(hide)
     }
   }, [text, interval])
 
-  let pos = 0
+  const words = text.split(' ')
+  const starts = words.map((_, w) => words.slice(0, w).reduce((n, x) => n + x.length + 1, 0))
   return (
     <span aria-label={text}>
-      {text.split(' ').map((word, w) => {
-        const start = pos
-        pos += word.length + 1
+      {words.map((word, w) => {
+        const start = starts[w]
         return (
-          <span key={w} className="word" aria-hidden="true">
+          <Fragment key={w}>
+            <span className="word" aria-hidden="true">
             {[...word].map((c, k) => {
-              const on = swap && swap.i === start + k
+              const i = start + k
+              const on = i in swaps
               return (
-                <span key={k} className={on ? 'ch on' : 'ch'} data-alt={on ? swap.alt : ''}>
+                <span key={k} className={on ? 'ch on' : 'ch'} data-alt={on ? swaps[i] : ''}>
                   {c}
                 </span>
               )
-            })}{' '}
-          </span>
+            })}
+            </span>{' '}
+          </Fragment>
         )
       })}
     </span>
