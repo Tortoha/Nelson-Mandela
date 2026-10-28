@@ -104,5 +104,3 @@ footer a { color: var(--accent); }
 .exlabel.real { color: var(--accent); margin-top: .6rem; }
 .ex .opt { margin-top: .8rem; }
 @media (max-width: 760px) { nav { flex-wrap: wrap; } }
-
-.prose .more { margin-top: 1.5rem; }
