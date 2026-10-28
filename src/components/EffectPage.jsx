@@ -76,6 +76,9 @@ export default function EffectPage() {
           <div className="flag-bar">
             {['#c8382c', '#e0a526', '#2e8b57', '#2a5db0', '#f3ead8'].map((c) => <i key={c} style={{ background: c }} />)}
           </div>
+          <p className="authors">
+            <T>Презентацию сделали великий, прекрасный, красивый, великодушный господин Сулейменов Искандер и менее прекрасный, но не менее ужасный Сулейменов Тастемир</T>
+          </p>
         </div>
         <Photo items={[{ src: '/photos/portrait2000.jpg', cap: 'Нельсон Мандела, 2000' }]} ratio="4 / 5" delay={5000} />
       </header>
