@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import GlitchText from './GlitchText'
+import Photo from './Photo'
 import Reveal from './Reveal'
 
 const T = ({ children }) => <GlitchText text={children} />
@@ -68,8 +69,19 @@ function Example({ title, memory, truth }) {
 export default function EffectPage() {
   return (
     <>
-      <section id="effect" className="block">
-        <h2><T>Эффект Манделы: что это</T></h2>
+      <header className="hero">
+        <div className="hero-text">
+          <h1><T>Эффект Манделы</T></h1>
+          <p><T>Когда тысячи людей одинаково помнят то, чего не было</T></p>
+          <div className="flag-bar">
+            {['#c8382c', '#e0a526', '#2e8b57', '#2a5db0', '#f3ead8'].map((c) => <i key={c} style={{ background: c }} />)}
+          </div>
+        </div>
+        <Photo items={[{ src: '/photos/portrait2000.jpg', cap: 'Нельсон Мандела, 2000' }]} ratio="4 / 5" delay={5000} />
+      </header>
+
+      <section className="block">
+        <h2><T>Что это такое</T></h2>
         <Reveal className="prose">
           <p>
             Эффект Манделы — это ситуация, когда много людей одинаково и очень уверенно помнят событие или деталь,
