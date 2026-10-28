@@ -74,3 +74,17 @@ footer details { max-width: 50rem; margin: 0 auto; text-align: left; font-size: 
 footer summary { cursor: pointer; text-align: center; }
 footer ul { margin-top: 1rem; padding-left: 1.2rem; }
 footer a { color: var(--accent); }
+
+.quiz { max-width: 50rem; margin: 0 auto; display: grid; gap: 1.5rem; }
+.qcard { border: 1px solid var(--line); border-radius: 18px; padding: 2rem; background: #15120d; }
+.qcard h3 { font-family: var(--display); font-weight: 500; font-size: 1.35rem; line-height: 1.4; margin-bottom: 1.2rem; }
+.qnum { color: var(--accent); }
+.opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .8rem; }
+.opt { font: inherit; font-size: 1.1rem; color: var(--fg); background: #1d1912; border: 1px solid var(--line); border-radius: 12px; padding: .9rem 1.1rem; cursor: pointer; text-align: left; transition: border-color .2s, background .2s; }
+.opt:hover:not(:disabled) { border-color: var(--accent); }
+.opt:disabled { cursor: default; }
+.opt.right { border-color: #2e8b57; background: #16301f; }
+.opt.wrong { border-color: #c8382c; background: #3a1713; }
+.note { margin-top: 1rem; color: var(--muted); font-size: 1.05rem; }
+.result { text-align: center; }
+.score { font-family: var(--display); font-size: 2.2rem; color: var(--accent); margin-bottom: 1rem; }

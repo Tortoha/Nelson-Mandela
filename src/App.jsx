@@ -1,6 +1,7 @@
 import './App.css'
 import GlitchText from './components/GlitchText'
 import Photo from './components/Photo'
+import Quiz from './components/Quiz'
 import Reveal from './components/Reveal'
 import credits from './credits.json'
 
@@ -89,6 +90,7 @@ export default function App() {
         <a href="#top"><T>Главная</T></a>
         <a href="#life"><T>Жизнь</T></a>
         <a href="#quotes"><T>Фразы</T></a>
+        <a href="#quiz"><T>Тест</T></a>
       </nav>
 
       <header id="top" className="hero">
@@ -127,6 +129,11 @@ export default function App() {
             </figure>
           ))}
         </Reveal>
+      </section>
+
+      <section id="quiz" className="block">
+        <h2><T>Проверь себя</T></h2>
+        <Quiz />
       </section>
 
       <footer>
